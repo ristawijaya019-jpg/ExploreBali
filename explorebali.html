@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExploreBali - Panduan Wisata Alam Bali</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    >
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #c8dac1;
+        }
+
+        header {
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('Bali1.jpg');
+            background-position: center;
+            background-size: cover;
+            min-height: 440px;
+            color: rgb(250, 245, 245);
+            padding: 0;
+            text-align: center;
+        }
+        
+        .navbar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: bold;
+            color: rgb(255, 255, 255);
+        }
+
+        .nav-links {
+            font-size: 14px;
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgb(253, 252, 252);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #2ed573;
+        }
+
+        @media (min-width: 600px) {
+            .navbar {
+                flex-direction: row;
+            }
+        }
+
+        .hero-text {
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .btn-hero {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #2ed573;
+            color: rgb(253, 252, 252);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-hero:hover {
+            background-color: #26af5f;
+            transform: translateY(-2px);
+        }
+
+        .filter-container {
+            text-align: center;
+            margin: 30px 0 20px 0;
+        }
+
+
+    
+        .filter-btn {
+            border: none;
+            background-color: #e0e0e0;
+            color: #333;
+            padding: 8px 18px;
+            margin: 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background-color: #2ed573;
+            color: white;
+        }
+
+        main {
+            padding: 1rem 2rem 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .destinasi-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+            padding: 10px 0;
+        }
+
+        .card {
+            background-color: rgb(209, 218, 207);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: left;
+            border: 1px solid #eee;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card h3 {
+            color: #2c3e50;
+            font-size: 16px;
+            margin: 10px 0 5px 0;
+            border-bottom: 2px solid #2ed573;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .badge-lokasi {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card p {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .btn-detail {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #2ed573;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-detail:hover {
+            background-color: #26af5f;
+        }
+
+        footer {
+            background-color: #1e272e;
+            color: #dcdde1;
+            text-align: center;
+            padding: 30px;
+            font-size: 14px;
+        }
+
+
+        .about-section{
+            background-color: #d9e6d3;   /* background hijau muda */
+            padding: 90px 20px 70px;
+        }
+
+       .about-container{
+            max-width: 1100px;
+            margin: 0 auto;              /* tidak menempel dengan hero */
+            background: #eef4ec;         /* card lebih terang */
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,.08);
+        }
+        .about-title{
+            text-align:center;
+            margin-bottom:40px;
+        }
+
+        .about-title h2{
+            color:#1f3d2b;
+            margin-bottom:15px;
+            font-size:32px;
+            font-weight:bold;
+        }
+
+        .about-title p{
+            color:#4f5d52;
+            max-width:760px;
+            margin:auto;
+           line-height:1.8;
+        }
+
+        .about-content{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:40px;
+            align-items:center;
+        }
+
+        .about-image img{
+            width:100%;
+            height:280px;
+            object-fit:cover;
+            border-radius:14px;
+            box-shadow:0 8px 20px rgba(0,0,0,.15);
+        }
+
+        .about-text h3{
+            color:#2c3e50;
+            margin-bottom:15px;
+        }
+
+        .about-text p{
+            color:#555;
+            line-height:1.8;
+            margin-bottom:15px;
+        }
+
+        @media(max-width:768px){
+        .about-content{
+            grid-template-columns:1fr;
+        }
+        }
+
+        #faq {
+            margin-top: 60px;
+       }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-area">
+                <img src="LogoExplore.png" alt="ExploreBali" class="nav-logo">
+                <span class="logo-text">ExploreBali</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Beranda</a></li>
+                <li><a href="#destinasi">Destinasi</a></li>
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#">Kontak</a></li>
+            </ul>
+        </nav>
+        <div class="hero-text">
+            <h1>ExploreBali</h1>
+            <p>Temukan keindahan alam Bali</p>
+            <a href="#destinasi" class="btn-hero">Mulai Jelajahi</a>
+        </div>
+    </header>
+    <section id="tentang" class="about-section">
+    <div class="about-container">
+
+        <div class="about-title">
+            <h2>Tentang ExploreBali</h2>
+            <p>
+                ExploreBali adalah website panduan wisata alam yang membantu Anda
+                menemukan destinasi terbaik di Pulau Dewata. Dari bukit hijau,
+                air terjun yang menenangkan, hingga pantai dengan panorama
+                spektakuler, semua kami rangkum dalam satu tempat.
+            </p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-image">
+                <img src="aboutbali.jpg" alt="Keindahan Alam Bali">
+            </div>
+
+            <div class="about-text">
+                <h3>Jelajahi Alam Bali dengan Mudah</h3>
+                <p>
+                    Kami menghadirkan informasi destinasi wisata alam yang menarik,
+                    lengkap dengan lokasi, deskripsi singkat, dan rekomendasi tempat
+                    terbaik untuk dikunjungi.
+                </p>
+
+                <p>
+                    ExploreBali cocok bagi wisatawan lokal maupun mancanegara yang
+                    ingin menikmati keindahan Bali secara lebih dekat melalui
+                    pengalaman alam yang autentik.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    <main id="destinasi">
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">Semua</button>
+            <button class="filter-btn" data-filter="bukit">Bukit & Gunung</button>
+            <button class="filter-btn" data-filter="air-terjun">Air Terjun</button>
+            <button class="filter-btn" data-filter="pantai">Pantai</button>
+        </div>
+   
+        <div class="destinasi-container">
+            <div class="card" data-category="bukit">
+                <img src="Campuhan.jpg" alt="Campuhan Ridge Walk">
+                <h3>1. Campuhan Ridge Walk</h3>
+                <span class="badge-lokasi">📍 Ubud, Gianyar</span>
+                <p>Jalur jalan kaki yang menawarkan pemandangan indah dari atas bukit. Jalur ini memungkinkan Anda menikmati keindahan alam Bali sambil melakukan aktivitas fisik yang menyenangkan.</p>
+                <a href="#" class="btn-detail">Lihat Detail</a>
+            </div>
+
+            <div class="card" data-category="air-terjun">
+                <img src="Sekumpul.jpg" alt="Air Terjun Sekumpul">
+                <h3>2. Air Terjun Sekumpul</h3>
+                <span class="badge-lokasi">📍 Sawan, Buleleng</span>
+                <p>Air terjun memukau yang terletak di kawasan utara Bali. Tempat yang ideal untuk trekking dan menikmati keindahan alam tersembunyi yang asri dan menyejukkan.</p>
+                <a href="#" class="btn-detail">Lihat Detail</a>
+            </div>
+
+            <div class="card" data-category="bukit">
+                <img src="Bratan.jpg" alt="Danau Beratan Bedugul">
+                <h3>3. Danau Beratan Bedugul</h3>
+                <span class="badge-lokasi">📍 Bedugul, Tabanan</span>
+                <p>Menawarkan pesona danau dengan pura ikonik (Pura Ulun Danu) di tengahnya. Udaranya yang sejuk sangat cocok untuk bersantai dan menjauh dari cuaca panas.</p>
+                <a href="#" class="btn-detail">Lihat Detail</a>
+            </div>
+
+            <div class="card" data-category="pantai">
+                <img src="Kelingking.jpg" alt="Pantai Kelingking">
+                <h3>4. Pantai Kelingking</h3>
+                <span class="badge-lokasi">📍 Klungkung, Nusa Penida</span>
+                <p>Ikon tebing berbentuk T-Rex di Nusa Penida. Menawarkan pemandangan laut biru yang spektakuler dari atas ketinggian tebing karst yang megah.</p>
+                <a href="#" class="btn-detail">Lihat Detail</a>
+            </div>
+        </div>
+        <section id="faq" class="py-5" style="background-color: #eaf1ed">
+  <div class="container">
+    <h2 class="text-center mb-5 display-5">Pertanyaan yang Sering Diajukan</h2>
+
+    <div class="accordion" id="faqAccordion">
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button"
+            data-bs-toggle="collapse" data-bs-target="#collapseOne"
+            aria-expanded="true" aria-controls="collapseOne">
+            Kapan waktu terbaik untuk mengunjungi wisata alam di Bali?
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show"
+          aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Waktu terbaik adalah saat musim kemarau (sekitar April–Oktober) karena cuaca lebih cerah dan jalur trekking maupun pantai lebih nyaman untuk dikunjungi.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button"
+            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+            aria-expanded="false" aria-controls="collapseTwo">
+            Apakah destinasi seperti Sekumpul dan Campuhan cocok untuk pemula?
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse"
+          aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Ya, keduanya dapat dikunjungi oleh pemula. Namun Air Terjun Sekumpul memerlukan trekking dengan jalan yang cukup menanjak, sehingga disarankan memakai sepatu yang nyaman.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button"
+            data-bs-toggle="collapse" data-bs-target="#collapseThree"
+            aria-expanded="false" aria-controls="collapseThree">
+            Apa saja yang sebaiknya dibawa saat menjelajahi alam Bali?
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse"
+          aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Bawa air minum, tabir surya, topi, pakaian yang nyaman, serta kamera untuk mengabadikan pemandangan. Untuk destinasi trekking, gunakan sepatu anti selip.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFour">
+          <button class="accordion-button collapsed" type="button"
+            data-bs-toggle="collapse" data-bs-target="#collapseFour"
+            aria-expanded="false" aria-controls="collapseFour">
+            Apakah semua destinasi memiliki biaya masuk?
+          </button>
+        </h2>
+        <div id="collapseFour" class="accordion-collapse collapse"
+          aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Tidak semuanya. Beberapa tempat gratis untuk dikunjungi, sementara destinasi tertentu seperti kawasan wisata atau air terjun biasanya mengenakan tiket masuk dengan harga yang bervariasi.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    </main>
+    
+
+    <footer>
+        <p>&copy; 2026 ExploreBali - Panduan Wisata Alam Bali. Seluruh Hak Dilindungi.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
