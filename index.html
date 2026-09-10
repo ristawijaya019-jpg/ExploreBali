@@ -6,7 +6,10 @@
     <title>ExploreBali - Panduan Wisata Alam Bali</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
+
     <style>
         html {
             scroll-behavior: smooth;
@@ -19,16 +22,21 @@
             background-color: #f5f2ea;
         }
 
+        /* ===== HERO ===== */
         header {
-            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('Bali1.jpg');
+            position: relative;
+            background-image:
+                linear-gradient(180deg, rgba(11,23,18,.68) 0%, rgba(11,23,18,.34) 42%, rgba(11,23,18,.58) 100%),
+                url('Bali1.jpg');
             background-position: center;
             background-size: cover;
-            min-height: 380px;
-            color: rgb(250, 245, 245);
+            min-height: 680px;
+            color: #faf7f2;
             padding: 0;
             text-align: center;
+            overflow: hidden;
         }
-        
+
         .custom-navbar {
             background-color: rgba(0, 0, 0, 0.6) !important;
             backdrop-filter: blur(5px);
@@ -77,19 +85,30 @@
         }
 
         .hero-text {
-            padding: 60px 15px;
+            position: relative;
+            z-index: 2;
+            padding: 130px 20px 110px;
+            max-width: 720px;
+            margin: 0 auto;
             text-align: center;
         }
 
         .hero-text h1 {
-            font-size: 32px;
-            font-weight: bold;
+            font-family: 'Fraunces', Georgia, serif;
+            font-weight: 500;
+            font-size: clamp(2.3rem, 6vw, 4.3rem);
+            line-height: 1.08;
+            letter-spacing: -0.01em;
+            margin: 0;
+            opacity: 0;
+            transform: translateY(16px);
+            animation: heroReveal .8s ease forwards;
         }
 
         .typing-cursor {
             display: inline-block;
-            font-weight: bold;
-            color: #ffffff;
+            font-weight: 400;
+            color: #d9e6de;
             animation: blink 0.7s infinite;
             margin-left: 2px;
         }
@@ -99,22 +118,92 @@
             50% { opacity: 0; }
         }
 
+        @keyframes heroReveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-subtitle {
+            margin: 18px auto 0;
+            max-width: 460px;
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            line-height: 1.65;
+            color: rgba(250, 247, 242, .88);
+            opacity: 0;
+            transform: translateY(16px);
+            animation: heroReveal .8s ease forwards;
+            animation-delay: .15s;
+        }
+
         .btn-hero {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 30px;
+            padding: 13px 28px;
             background-color: #2f5d4a;
             color: rgb(253, 252, 252);
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 999px;
             font-size: 15px;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-weight: 600;
+            letter-spacing: .01em;
+            box-shadow: 0 12px 28px rgba(15, 30, 24, .38);
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(16px);
+            animation: heroReveal .8s ease forwards;
+            animation-delay: .3s;
         }
 
         .btn-hero:hover {
             background-color: #234438;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 16px 32px rgba(15, 30, 24, .46);
+        }
+
+        .hero-meta {
+            margin-top: 28px;
+            display: flex;
+            justify-content: center;
+            gap: 22px;
+            flex-wrap: wrap;
+            font-size: 12.5px;
+            color: rgba(250, 247, 242, .72);
+            opacity: 0;
+            transform: translateY(16px);
+            animation: heroReveal .8s ease forwards;
+            animation-delay: .42s;
+        }
+
+        .hero-meta i {
+            margin-right: 6px;
+            color: #a9c9b4;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-text h1,
+            .hero-subtitle,
+            .btn-hero,
+            .hero-meta {
+                animation: none;
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .hero-wave {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1px;
+            line-height: 0;
+            z-index: 1;
+        }
+
+        .hero-wave svg {
+            display: block;
+            width: 100%;
+            height: 64px;
         }
 
         .about-section {
@@ -640,19 +729,20 @@
 
         @media (max-width: 768px) {
             header {
-                min-height: 320px;
+                min-height: 560px;
             }
 
             .hero-text {
-                padding: 40px 15px;
+                padding: 78px 18px 76px;
             }
 
-            .hero-text h1 {
-                font-size: 26px;
+            .hero-wave svg {
+                height: 40px;
             }
 
-            .hero-text p {
-                font-size: 14px;
+            .hero-meta {
+                gap: 14px;
+                font-size: 11.5px;
             }
 
             .about-section {
@@ -677,10 +767,6 @@
             .destinasi-container .card {
                 flex: 0 0 78vw;
                 scroll-snap-align: center;
-            }
-
-            .card img {
-                height: 240px;
             }
 
             #faq {
@@ -715,8 +801,18 @@
 
         <div class="hero-text">
             <h1><span id="typing-text"></span><span class="typing-cursor">|</span></h1>
-            <p>Temukan keindahan alam Bali</p>
-            <a href="#destinasi" class="btn-hero">Mulai Jelajahi</a>
+            <p class="hero-subtitle">Temukan bukit, air terjun, danau, dan pantai terbaik di Pulau Dewata — lengkap dengan tips sebelum berkunjung.</p>
+            <a href="#destinasi" class="btn-hero"><i class="fa-solid fa-compass"></i> Mulai Jelajahi</a>
+            <div class="hero-meta">
+                <span><i class="fa-solid fa-mountain-sun"></i>4 destinasi pilihan</span>
+                <span><i class="fa-solid fa-leaf"></i>Bukit, air terjun, danau &amp; pantai</span>
+            </div>
+        </div>
+
+        <div class="hero-wave" aria-hidden="true">
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+                <path d="M0,32 C240,80 480,0 720,24 C960,48 1200,88 1440,40 L1440,80 L0,80 Z" fill="#ffffff"></path>
+            </svg>
         </div>
     </header>
 
